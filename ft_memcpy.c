@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcolera- <jcolera-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/25 19:48:34 by jcolera-          #+#    #+#             */
-/*   Updated: 2023/09/25 21:35:45 by jcolera-         ###   ########.fr       */
+/*   Created: 2023/09/25 21:39:37 by jcolera-          #+#    #+#             */
+/*   Updated: 2023/09/25 22:24:03 by jcolera-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include <stdlib.h>
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
+void *ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
+{
+	size_t	i;
+	void *dst2;
+	void *src2;
 
-int		ft_isalpha(int c);
-int		ft_isdigit(int c);
-int		ft_isalnum(int c);
-int		ft_isascii(int c);
-int		ft_isprint(int c);
-int		ft_strlen(char *str);
-void	*ft_memset(void *b, int c, size_t len);	
-void	ft_bzero(void *s, size_t n);
-#endif
+	dst2 = dst;
+	src2 = src;
+	i = 0;
+	while (i < n)
+	{
+		dst2[i] = (void *)src[i];
+		i++;
+	}
+	return (dst);
+}
