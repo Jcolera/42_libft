@@ -6,17 +6,19 @@
 /*   By: jcolera- <jcolera-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 19:31:31 by jcolera-          #+#    #+#             */
-/*   Updated: 2023/09/25 19:32:14 by jcolera-         ###   ########.fr       */
+/*   Updated: 2023/09/25 21:23:15 by jcolera-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-void	*memset(void *b, int c, size_t len);
+void	*ft_memset(void *b, int c, size_t len)
 {
 	int	i;
 
 	i = 0;
-	while (*(str + i) != '\0')
+	while (i < len)
+	{
+		*(b + i) = (unsigned char) c;
 		i++;
-	return (i);
+	}
+	return (b);
 }
