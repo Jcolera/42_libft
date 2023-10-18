@@ -6,7 +6,7 @@
 /*   By: jcolera- <jcolera-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 19:24:02 by jcolera-          #+#    #+#             */
-/*   Updated: 2023/10/09 20:25:40 by jcolera-         ###   ########.fr       */
+/*   Updated: 2023/10/13 18:47:09 by jcolera-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,28 @@
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	int				i;
-	unsigned char	*hay_aux;
-	unsigned char	*need_aux;
+	size_t			i;
+	size_t			j;
 
-	hay_aux = (unsigned char *)haystack;
-	need_aux = (unsigned char *)needle;
 	i = 0;
-	while ((i < (int)len) && (hay_aux[i] != 0))
+	if (ft_strlen((char *)needle) == 0)
+		return ((char *)haystack);
+	while ((haystack[i] != 0) && (i <= (len - ft_strlen((char *)needle))))
 	{
-		if (ft_memcmp (&hay_aux[i], need_aux, ft_strlen((char *)need_aux)) == 0)
-			return ((char *) &hay_aux[i]);
+		if (len < (size_t) ft_strlen((char *)needle) || len == 0)
+			return (NULL);
+		if (haystack[i] == needle[0])
+		{
+			j = 0;
+			while (j < (size_t) ft_strlen((char *)needle))
+			{
+				if (haystack[i + j] != needle[j])
+					break ;
+				j++;
+			}
+			if (j == (size_t) ft_strlen((char *)needle))
+				return ((char *) &haystack[i]);
+		}
 		i++;
 	}
 	return (NULL);

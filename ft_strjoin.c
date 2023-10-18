@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcolera- <jcolera-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/29 18:33:59 by jcolera-          #+#    #+#             */
-/*   Updated: 2023/10/13 17:45:56 by jcolera-         ###   ########.fr       */
+/*   Created: 2023/10/14 16:40:54 by jcolera-          #+#    #+#             */
+/*   Updated: 2023/10/14 21:28:12 by jcolera-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t n)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int					i;
-	unsigned char		*dst2;
-	const unsigned char	*src2;
+	char	*ptr;
 
-	if (dst == NULL && src == NULL)
+	if (s1 == NULL || s2 == NULL)
 		return (NULL);
-	dst2 = dst;
-	src2 = src;
-	i = n - 1;
-	if ((dst - src) >= (long) n || src2 > dst2)
-		ft_memcpy(dst2, src2, n);
-	else
-	{
-		while (i >= 0)
-		{
-			dst2[i] = src2[i];
-			i--;
-		}
-	}
-	return (dst);
+	ptr = ft_calloc(ft_strlen (s1) + ft_strlen (s2) + 1, 1);
+	if (ptr == NULL)
+		return (NULL);
+	ft_memcpy(ptr, s1, ft_strlen (s1));
+	ft_memcpy(ptr + ft_strlen (s1), s2, ft_strlen (s2));
+	return (ptr);
 }

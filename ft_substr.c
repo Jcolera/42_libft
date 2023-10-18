@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcolera- <jcolera-@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/29 18:33:59 by jcolera-          #+#    #+#             */
-/*   Updated: 2023/10/13 17:45:56 by jcolera-         ###   ########.fr       */
+/*   Created: 2023/10/13 19:34:27 by jcolera-          #+#    #+#             */
+/*   Updated: 2023/10/14 20:30:55 by jcolera-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t n)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	int					i;
-	unsigned char		*dst2;
-	const unsigned char	*src2;
+	char	*ptr;
+	size_t	len_s;
 
-	if (dst == NULL && src == NULL)
+	len_s = ft_strlen (s);
+	if (s == NULL || start > len_s)
+		return (ft_strdup(""));
+	if ((start + len) > len_s)
+		len = len_s - start;
+	ptr = malloc (len + 1 * sizeof(char));
+	if (ptr == NULL)
 		return (NULL);
-	dst2 = dst;
-	src2 = src;
-	i = n - 1;
-	if ((dst - src) >= (long) n || src2 > dst2)
-		ft_memcpy(dst2, src2, n);
-	else
-	{
-		while (i >= 0)
-		{
-			dst2[i] = src2[i];
-			i--;
-		}
-	}
-	return (dst);
+	ft_strlcpy(ptr, (char *) &s[start], len + 1);
+	return (ptr);
 }
