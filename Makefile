@@ -35,9 +35,12 @@ SRC=ft_isalpha.c\
 	ft_putnbr_fd.c\
 	main.c
 
+BONUS_SRC=ft_isalpha.c
+
 CFLAGS = -Wall -Wextra -Werror
 CC = gcc
 OBJ=$(SRC:.c=.o)
+BONUS_OBJ=$(BONUS_SRC:.c=.o)
 
 all: $(NAME)
 
