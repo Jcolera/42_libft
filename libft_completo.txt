@@ -1,0 +1,1104 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcolera- <jcolera-@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/09 20:28:33 by jcolera-          #+#    #+#             */
+/*   Updated: 2023/10/13 13:13:44 by jcolera-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_atoi(const char *str)
+{
+	int		i;
+	int		result;
+	int		sign;
+	char	*str_aux;
+
+	str_aux = (char *)str;
+	while ((*str_aux >= 9 && *str_aux <= 13) || *str_aux == 32)
+		str_aux++;
+	i = 0;
+	result = 0;
+	sign = 1;
+	if (str_aux[i] == '-' )
+		sign = -1;
+	if (str_aux[i] == '+' || str_aux[i] == '-')
+		str_aux++;
+	while (str_aux[i] >= '0' && str_aux[i] <= '9' )
+	{
+		result = (result * 10) + (str_aux[i] - '0');
+		i++;
+	}
+	return (result * sign);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcolera- <jcolera-@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/25 21:31:38 by jcolera-          #+#    #+#             */
+/*   Updated: 2023/09/30 17:14:21 by jcolera-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+void	ft_bzero(void *s, size_t n)
+{
+	size_t	i;
+	char	*s_aux;
+
+	s_aux = s;
+	i = 0;
+	while (i < n)
+	{
+		s_aux[i] = 0;
+		i++;
+	}
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcolera- <jcolera-@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/13 18:48:05 by jcolera-          #+#    #+#             */
+/*   Updated: 2023/10/13 18:59:06 by jcolera-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	unsigned char	*ptr;
+
+	ptr = malloc (count * size);
+	if (ptr != NULL)
+		ft_bzero (ptr, count * size);
+	return (ptr);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcolera- <jcolera-@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/22 20:25:04 by jcolera-          #+#    #+#             */
+/*   Updated: 2023/09/25 19:09:32 by jcolera-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_isalnum(int c)
+{
+	if (ft_isalpha(c) || ft_isdigit(c))
+		return (1);
+	return (0);
+}	
+/*
+int	main()
+{
+	printf ("\ndevuelve a: %d", ft_isalnum('a'));
+	printf ("\ndevuelve \\n: %d", ft_isalnum('\n'));
+	//printf ("\ndevuelve ñ: %d", ft_isalnum('ñ'));
+	printf ("\ndevuelve A: %d", ft_isalnum('A'));
+	printf ("\ndevuelve 3: %d", ft_isalnum('3'));
+}*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcolera- <jcolera-@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/11 17:32:55 by jcolera-          #+#    #+#             */
+/*   Updated: 2023/09/29 19:54:27 by jcolera-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_isalpha(int c)
+{
+	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+		return (1);
+	return (0);
+}	
+/*
+int	main()
+{
+	printf ("\ndevuelve a: %d", ft_isalpha('a'));
+	printf ("\ndevuelve \\n: %d", ft_isalpha('\n'));
+	//printf ("\ndevuelve ñ: %d", ft_isalpha('ñ'));
+	printf ("\ndevuelve A: %d", ft_isalpha('A'));
+	printf ("\ndevuelve 3: %d", ft_isalpha('3'));
+}*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcolera- <jcolera-@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/25 18:51:49 by jcolera-          #+#    #+#             */
+/*   Updated: 2023/09/25 19:06:19 by jcolera-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+//#include "string.h"
+#include "libft.h"
+
+int	ft_isascii( int c )
+{
+	if ((c >= 0) && (c <= 127))
+		return (1);
+	return (0);
+}	
+/*
+int	main()
+{
+	printf ("\ndevuelve a: %d", ft_isascii('a'));
+	printf ("\ndevuelve \\n: %d", ft_isascii('\n'));
+	printf ("\ndevuelve 130: %d", ft_isascii(130));
+	printf ("\ndevuelve -1: %d", ft_isascii(-1));
+	printf ("\ndevuelve 3: %d", ft_isascii('3'));
+}*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcolera- <jcolera-@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/25 18:47:02 by jcolera-          #+#    #+#             */
+/*   Updated: 2023/09/25 19:10:31 by jcolera-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
+}	
+/*
+int	main()
+{
+	printf ("\ndevuelve a: %d", ft_isdigit('a'));
+	printf ("\ndevuelve \\n: %d", ft_isdigit('\n'));
+	//printf ("\ndevuelve ñ: %d", ft_isdigit('ñ'));
+	printf ("\ndevuelve A: %d", ft_isdigit('A'));
+	printf ("\ndevuelve 3: %d", ft_isdigit('3'));
+}*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcolera- <jcolera-@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/25 19:14:20 by jcolera-          #+#    #+#             */
+/*   Updated: 2023/09/25 19:24:53 by jcolera-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+//#include "string.h"
+#include "libft.h"
+
+int	ft_isprint( int c )
+{
+	if ((c >= 32) && (c <= 126))
+		return (1);
+	return (0);
+}	
+/*
+int	main()
+{
+	printf ("\ndevuelve a: %d", ft_isprint('a'));
+	printf ("\ndevuelve \\n: %d", ft_isprint('\n'));
+	printf ("\ndevuelve 130: %d", ft_isprint(130));
+	printf ("\ndevuelve -1: %d", ft_isprint(-1));
+	printf ("\ndevuelve 3: %d", ft_isprint('3'));
+}*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcolera- <jcolera-@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/14 21:49:07 by jcolera-          #+#    #+#             */
+/*   Updated: 2023/10/18 21:01:25 by jcolera-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+static int	ln_num(int n)
+{
+	int	i;
+
+	i = 1;
+	if (n < 0)
+	{
+		n *= -1;
+		i++;
+	}
+	while (n >= 10)
+	{
+		i++;
+		n /= 10;
+	}
+	return (i);
+}
+
+char	*ft_itoa(int n)
+{
+	char	*ptr;
+	int		len;
+
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
+	len = ln_num(n);
+	ptr = ft_calloc(len + 1, sizeof(char));
+	if (ptr == NULL)
+		return (NULL);
+	if (n == 0)
+		ptr[0] = '0';
+	if (n < 0)
+	{
+		ptr[0] = '-';
+		n *= -1;
+	}
+	while (n > 0)
+	{
+		ptr[len - 1] = (n % 10) + '0';
+		n = n / 10;
+		len--;
+	}
+	return (ptr);
+}
+/*
+int	main()
+{
+	char	*ptr;
+	int		n;
+
+	n = -345;
+	ptr = ft_itoa(-345);
+	printf("%d despues itoa %s", n, ptr);
+}*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcolera- <jcolera-@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/30 17:39:23 by jcolera-          #+#    #+#             */
+/*   Updated: 2023/10/13 15:18:01 by jcolera-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+void	*ft_memchr(const void *s, int c, size_t n)
+{
+	int		i;
+	char	*s_aux;
+
+	i = 0;
+	s_aux = (char *)s;
+	while (i < (int) n)
+	{
+		if (s_aux[i] == (char)c)
+			return ((void *) &s[i]);
+		i++;
+	}
+	return (NULL);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcolera- <jcolera-@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/09 18:37:36 by jcolera-          #+#    #+#             */
+/*   Updated: 2023/10/09 19:23:36 by jcolera-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
+{
+	int				i;
+	unsigned char	*s1_aux;
+	unsigned char	*s2_aux;
+
+	i = 0;
+	s1_aux = (unsigned char *) s1;
+	s2_aux = (unsigned char *) s2;
+	while (i < (int) n)
+	{
+		if (s2_aux[i] != s1_aux[i])
+			return (s1_aux[i] - s2_aux[i]);
+		i++;
+	}
+	return (0);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcolera- <jcolera-@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/25 21:39:37 by jcolera-          #+#    #+#             */
+/*   Updated: 2023/10/13 17:17:22 by jcolera-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+void	*ft_memcpy(void *dst, const void *src, size_t n)
+{
+	size_t				i;
+	unsigned char		*dst2;
+	const unsigned char	*src2;
+
+	if (dst == NULL && src == NULL)
+		return (NULL);
+	dst2 = dst;
+	src2 = src;
+	i = 0;
+	while (i < n)
+	{
+		dst2[i] = src2[i];
+		i++;
+	}
+	return (dst);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcolera- <jcolera-@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/29 18:33:59 by jcolera-          #+#    #+#             */
+/*   Updated: 2023/10/13 17:45:56 by jcolera-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+void	*ft_memmove(void *dst, const void *src, size_t n)
+{
+	int					i;
+	unsigned char		*dst2;
+	const unsigned char	*src2;
+
+	if (dst == NULL && src == NULL)
+		return (NULL);
+	dst2 = dst;
+	src2 = src;
+	i = n - 1;
+	if ((dst - src) >= (long) n || src2 > dst2)
+		ft_memcpy(dst2, src2, n);
+	else
+	{
+		while (i >= 0)
+		{
+			dst2[i] = src2[i];
+			i--;
+		}
+	}
+	return (dst);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcolera- <jcolera-@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/25 19:31:31 by jcolera-          #+#    #+#             */
+/*   Updated: 2023/09/30 15:13:45 by jcolera-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+void	*ft_memset(void *b, int c, size_t len)
+{
+	int		i;
+	char	*c_aux;
+
+	c_aux = (char *)b;
+	i = 0;
+	while (i < (int)len)
+	{
+		*(c_aux + i) = (unsigned char) c;
+		i++;
+	}
+	return (b);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcolera- <jcolera-@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/14 18:43:06 by jcolera-          #+#    #+#             */
+/*   Updated: 2023/10/14 18:54:19 by jcolera-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcolera- <jcolera-@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/14 18:55:56 by jcolera-          #+#    #+#             */
+/*   Updated: 2023/10/14 18:58:07 by jcolera-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+void	ft_putendl_fd(char *s, int fd)
+{
+	write(fd, s, ft_strlen(s));
+	write(fd, "\n", 1);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcolera- <jcolera-@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/14 18:59:51 by jcolera-          #+#    #+#             */
+/*   Updated: 2023/10/14 21:27:59 by jcolera-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+void	ft_putnbr_fd(int n, int fd)
+{
+	long int	n_aux;
+
+	n_aux = n;
+	if (n_aux < 0)
+	{
+		ft_putchar_fd('-', fd);
+		n_aux *= -1;
+	}
+	if (n_aux < 10)
+		ft_putchar_fd(n_aux + '0', fd);
+	else
+	{
+		ft_putnbr_fd (n_aux / 10, fd);
+		ft_putchar_fd((n_aux % 10) + '0', fd);
+	}
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcolera- <jcolera-@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/14 18:48:15 by jcolera-          #+#    #+#             */
+/*   Updated: 2023/10/14 18:54:11 by jcolera-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+void	ft_putstr_fd(char *s, int fd)
+{
+	write(fd, s, ft_strlen(s));
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcolera- <jcolera-@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/18 21:01:52 by jcolera-          #+#    #+#             */
+/*   Updated: 2023/10/18 21:05:15 by jcolera-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+// Funcion para contar palabras
+
+size_t	count_words(const char *s, char c)
+{
+	size_t	i;
+	size_t	count;
+
+	i = 0;
+	count = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] != c)
+		{
+			count++;
+			while (s[i] != '\0' && s[i] != c)
+				i++;
+		}
+		else if (s[i] == c)
+			i++;
+	}
+	return (count);
+}
+
+// Funcion para conocer el inicio de mi palabra
+
+size_t	get_init_len(const char *s, char c)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] != '\0' && s[i] != c)
+		i++;
+	return (i);
+}
+
+// Funcion para liberar memoria
+
+static void	free_memory(size_t i, char **str)
+{
+	while (i > 0)
+	{
+		i--;
+		free(*(str + i));
+	}
+	free(str);
+}
+
+// funcion para hacer hacer split
+
+static char	**to_split(const char *s, char c, char **str, size_t w_count)
+{
+	size_t	row;
+	size_t	col;
+
+	row = 0;
+	col = 0;
+	while (row < w_count)
+	{
+		while (*(s + col) != '\0' && *(s + col) == c)
+		{
+			col++;
+		}
+		*(str + row) = ft_substr(s, col, get_init_len(&*(s + col), c));
+		if (*(str + row) == NULL)
+		{
+			free_memory(row, str);
+			return (NULL);
+		}
+		while (*(s + col) != '\0' && *(s + col) != c)
+		{
+			col++;
+		}
+		row++;
+	}
+	*(str + row) = NULL;
+	return (str);
+}
+
+char	**ft_split(const char *s, char c)
+{
+	char	**str;
+	size_t	words;
+
+	if (s == NULL)
+		return (NULL);
+	words = count_words(s, c);
+	str = (char **)malloc((words + 1) * sizeof(char *));
+	if (str == NULL)
+		return (NULL);
+	str = to_split(s, c, str, words);
+	return (str);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcolera- <jcolera-@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/30 16:02:06 by jcolera-          #+#    #+#             */
+/*   Updated: 2023/10/13 13:11:48 by jcolera-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+char	*ft_strchr(const char *s, int c)
+{
+	int	i;
+
+	i = 0;
+	c %= 256;
+	while (s[i] != 0)
+	{
+		if (s[i] == c)
+			return ((char *) &s[i]);
+		i++;
+	}
+	if (c == '\0')
+		return ((char *) &s[i]);
+	return (NULL);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcolera- <jcolera-@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/13 18:59:38 by jcolera-          #+#    #+#             */
+/*   Updated: 2023/10/13 19:22:37 by jcolera-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+char	*ft_strdup(const char *s1)
+{
+	int		len;
+	char	*ptr;
+
+	len = ft_strlen (s1);
+	ptr = ft_calloc (len + 1, sizeof(char));
+	if (ptr == NULL)
+		return (NULL);
+	ft_memcpy (ptr, s1, len);
+	return (ptr);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcolera- <jcolera-@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/18 20:45:55 by jcolera-          #+#    #+#             */
+/*   Updated: 2023/10/18 20:55:03 by jcolera-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
+{
+	unsigned int	i;
+
+	i = 0;
+	while (s[i] != '\0')
+	{
+		(*f)(i, s + i);
+		i++;
+	}
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcolera- <jcolera-@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/14 16:40:54 by jcolera-          #+#    #+#             */
+/*   Updated: 2023/10/14 21:28:12 by jcolera-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*ptr;
+
+	if (s1 == NULL || s2 == NULL)
+		return (NULL);
+	ptr = ft_calloc(ft_strlen (s1) + ft_strlen (s2) + 1, 1);
+	if (ptr == NULL)
+		return (NULL);
+	ft_memcpy(ptr, s1, ft_strlen (s1));
+	ft_memcpy(ptr + ft_strlen (s1), s2, ft_strlen (s2));
+	return (ptr);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcolera- <jcolera-@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/30 15:26:55 by jcolera-          #+#    #+#             */
+/*   Updated: 2023/10/11 23:34:39 by jcolera-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+size_t	ft_strlcat(char *dest, char *src, unsigned int size)
+{
+	size_t	i;
+	size_t	len_dest;
+	int		len_src;
+
+	len_dest = ft_strlen(dest);
+	len_src = ft_strlen(src);
+	if (size <= len_dest)
+		return (size + len_src);
+	i = 0;
+	while ((len_dest + i + 1) < size && src[i] != '\0')
+	{
+		dest[len_dest + i] = src[i];
+		i++;
+	}
+	dest[len_dest + i] = '\0';
+	return (len_dest + len_src);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcolera- <jcolera-@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/30 15:29:30 by jcolera-          #+#    #+#             */
+/*   Updated: 2023/10/11 22:09:14 by jcolera-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+size_t	ft_strlcpy(char *dest, char *src, unsigned int size)
+{
+	size_t	i;
+
+	if (size <= 0)
+		return (ft_strlen(src));
+	i = 0;
+	while (src[i] != '\0' && i < size - 1)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (ft_strlen(src));
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcolera- <jcolera-@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/25 19:27:01 by jcolera-          #+#    #+#             */
+/*   Updated: 2023/10/13 17:07:43 by jcolera-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_strlen(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while (*(str + i) != '\0')
+		i++;
+	return (i);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcolera- <jcolera-@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/18 20:55:32 by jcolera-          #+#    #+#             */
+/*   Updated: 2023/10/18 20:57:06 by jcolera-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
+{
+	char	*str;
+	int		i;
+
+	if (s == NULL || f == NULL)
+		return (NULL);
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (str == NULL)
+		return (NULL);
+	i = 0;
+	while (s[i] != '\0')
+	{
+		str[i] = (*f)(i, s[i]);
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcolera- <jcolera-@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/29 18:59:35 by jcolera-          #+#    #+#             */
+/*   Updated: 2023/10/13 17:47:41 by jcolera-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/*#include <string.h>
+#include <stdio.h>*/
+#include "libft.h"
+
+int	ft_strncmp(char *s1, char *s2, unsigned int n)
+{
+	unsigned int	i;
+	unsigned char	*s1_aux;
+	unsigned char	*s2_aux;
+
+	s1_aux = (unsigned char *)s1;
+	s2_aux = (unsigned char *)s2;
+	if (n == 0)
+		return (0);
+	i = 0;
+	while (i < n && (s1_aux[i] != '\0' && s2_aux[i] != '\0'))
+	{
+		if (s2_aux[i] != s1_aux[i])
+			return (s1_aux[i] - s2_aux[i]);
+		i++;
+	}
+	if (i == n)
+		return (0);
+	else
+		return (s1_aux[i] - s2_aux[i]);
+}
+/*
+int	main(void)
+{
+	int		result;
+	char	cad1[] = {"6251\200"};
+	char	cad2[] = {"6251\0"};
+
+	result = strncmp(cad2, cad1, 5);
+	printf("ha devuelto: %d\n", result);
+	result = ft_strncmp(cad2, cad1, 5);
+	printf("ha devuelto: %d\n", result);
+	return (0);
+}*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcolera- <jcolera-@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/09 19:24:02 by jcolera-          #+#    #+#             */
+/*   Updated: 2023/10/13 18:47:09 by jcolera-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+{
+	size_t			i;
+	size_t			j;
+
+	i = 0;
+	if (ft_strlen((char *)needle) == 0)
+		return ((char *)haystack);
+	while ((haystack[i] != 0) && (i <= (len - ft_strlen((char *)needle))))
+	{
+		if (len < (size_t) ft_strlen((char *)needle) || len == 0)
+			return (NULL);
+		if (haystack[i] == needle[0])
+		{
+			j = 0;
+			while (j < (size_t) ft_strlen((char *)needle))
+			{
+				if (haystack[i + j] != needle[j])
+					break ;
+				j++;
+			}
+			if (j == (size_t) ft_strlen((char *)needle))
+				return ((char *) &haystack[i]);
+		}
+		i++;
+	}
+	return (NULL);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcolera- <jcolera-@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/30 17:22:31 by jcolera-          #+#    #+#             */
+/*   Updated: 2023/10/13 14:38:27 by jcolera-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+char	*ft_strrchr(const char *s, int c)
+{
+	int		i;
+
+	c %= 256;
+	i = ft_strlen((char *) s);
+	while (i >= 0)
+	{
+		if (s[i] == c)
+			return ((char *) &s[i]);
+		i--;
+	}
+	return (NULL);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcolera- <jcolera-@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/14 17:40:57 by jcolera-          #+#    #+#             */
+/*   Updated: 2023/10/14 21:32:28 by jcolera-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+char	*ft_strtrim(char const *s1, char const *set)
+{
+	int	i;
+
+	if (s1 == NULL || set == NULL)
+		return (NULL);
+	if (!s1[0])
+		return (ft_strdup(""));
+	while (*s1 != 0 && ft_strchr(set, *s1) != NULL)
+		s1++;
+	i = ft_strlen(s1);
+	while (i >= 0 && ft_strchr(set, s1[i - 1]) != NULL)
+		i--;
+	return (ft_substr(s1, 0, i));
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcolera- <jcolera-@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/13 19:34:27 by jcolera-          #+#    #+#             */
+/*   Updated: 2023/10/14 20:30:55 by jcolera-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*ptr;
+	size_t	len_s;
+
+	len_s = ft_strlen (s);
+	if (s == NULL || start > len_s)
+		return (ft_strdup(""));
+	if ((start + len) > len_s)
+		len = len_s - start;
+	ptr = malloc (len + 1 * sizeof(char));
+	if (ptr == NULL)
+		return (NULL);
+	ft_strlcpy(ptr, (char *) &s[start], len + 1);
+	return (ptr);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcolera- <jcolera-@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/30 15:54:54 by jcolera-          #+#    #+#             */
+/*   Updated: 2023/09/30 15:55:58 by jcolera-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_tolower(int c)
+{
+	if (c >= 'A' && c <= 'Z')
+		return (c + ('a' - 'A'));
+	return (c);
+}
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jcolera- <jcolera-@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/29 21:01:58 by jcolera-          #+#    #+#             */
+/*   Updated: 2023/09/30 15:55:13 by jcolera-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_toupper(int c)
+{
+	if (c >= 'a' && c <= 'z')
+		return (c - ('a' - 'A'));
+	return (c);
+}
+#include "libft.h"
+
+int main(void)
+{
+	printf("hola %d\n", ft_isalpha('a'));
+	return (0);
+}
